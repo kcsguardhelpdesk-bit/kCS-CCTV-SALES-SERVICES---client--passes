@@ -1,0 +1,21 @@
+{
+  "name": "KCS Guard CCTV Solutions",
+  "short_name": "KCS Guard",
+  "description": "Elite Infrastructure Platform for CCTV & Enterprise IT Services",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#09110e",
+  "theme_color": "#06b6d4",
+  "icons": [
+    {
+      "src": "/media/image.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/media/image.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

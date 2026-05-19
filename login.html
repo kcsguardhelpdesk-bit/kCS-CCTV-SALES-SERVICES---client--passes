@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KCS Guard Admin Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/admin.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <div class="login-logo">
+            <span class="logo-kcs">KCS</span>
+            <span class="logo-guard">GUARD</span>
+        </div>
+        <h2>ADMIN PORTAL</h2>
+        <form id="login-form">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="login-username" class="form-control" placeholder="Enter username" required autocomplete="username">
+            </div>
+            <div class="form-group" style="margin-bottom: 2rem;">
+                <label>Password</label>
+                <input type="password" id="login-password" class="form-control" placeholder="Enter password" required autocomplete="current-password">
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.85rem; font-size: 1rem; border-radius: 8px;">Sign In</button>
+            <div id="login-error" class="login-error hidden">Invalid username or password.</div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+            const errorMsg = document.getElementById('login-error');
+
+            errorMsg.classList.add('hidden');
+
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    // Redirect to the protected admin page
+                    window.location.href = '/admin';
+                } else {
+                    errorMsg.textContent = data.message || 'Invalid username or password.';
+                    errorMsg.classList.remove('hidden');
+                }
+            } catch (err) {
+                errorMsg.textContent = 'Server/Network Error. Please try again.';
+                errorMsg.classList.remove('hidden');
+                console.error(err);
+            }
+        });
+    </script>
+</body>
+</html>

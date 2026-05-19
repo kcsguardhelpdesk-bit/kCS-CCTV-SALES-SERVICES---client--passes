@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KCS GUARD | CCTV & SECURITY SOLUTIONS</title>
+    <link rel="stylesheet" href="css/main.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- PWA Manifest & Theme -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#06b6d4">
+    <link rel="apple-touch-icon" href="media/image.png">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Font Awesome for Social -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <!-- WhatsApp Floating -->
+    <a href="https://wa.me/919391154616" class="whatsapp-float" target="_blank" rel="noopener noreferrer" id="whatsapp-floating-btn">
+        <i data-lucide="message-circle"></i>
+    </a>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <a href="#home" class="logo">
+            <div class="logo-wrapper">
+                <span class="logo-kcs">KCS</span>
+                <span class="logo-guard">GUARD</span>
+            </div>
+            <span class="logo-sub">SECURITY</span>
+        </a>
+
+        <div class="nav-links" id="nav-links">
+            <a href="#home">Home</a>
+            <a href="#products">Products</a>
+            <a href="#services">Services</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+            <button class="btn btn-primary" id="nav-quote-btn">Get Quote</button>
+        </div>
+
+        <div class="mobile-toggle" id="mobile-toggle">
+            <i data-lucide="menu"></i>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero">
+        <!-- Background / Top Image Panel -->
+        <div class="hero-image-panel">
+            <img src="https://static.vecteezy.com/system/resources/previews/027/875/612/non_2x/modern-security-camera-high-tech-surveillance-wireless-video-monitoring-smart-home-cctv-advanced-security-solutions-generative-ai-free-photo.jpg" alt="KCS Guard CCTV Security Camera" loading="eager">
+            <div class="hero-img-badge">
+                <span class="dot-pulse"></span>
+                Live Surveillance Ready
+            </div>
+        </div>
+
+        <!-- Text Content -->
+        <div class="hero-inner">
+            <div class="hero-content">
+                <div class="welcome-badge">
+                    <span id="welcome-text"></span><span class="cursor">|</span>
+                </div>
+                <h1>Protecting Your World with Precision</h1>
+                <p>
+                    We don't just install cameras; we build peace of mind. From industrial-grade surveillance to
+                    advanced IT networking and <strong>expert doorstep repair services</strong>, KCS Infra provides the professional backbone for your home and business.
+                </p>
+                <div class="cta-group">
+                    <a href="#contact" class="btn btn-primary">
+                        Free Site Survey <i data-lucide="chevron-right" style="width: 18px;"></i>
+                    </a>
+                    <a href="tel:+919391154616" class="btn btn-secondary">
+                        <i data-lucide="phone" style="width: 18px;"></i> Call an Expert
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+
+    <!-- 2. Products Preview Section (Moved Up) -->
+    <section id="products" class="section">
+        <div class="section-header">
+            <div class="section-title-row">
+                <div>
+                    <h2>Our Product Catalog</h2>
+                    <p>Genuine hardware from world-leading technology brands.</p>
+                </div>
+                <button class="btn btn-secondary" id="open-catalog-btn">
+                    View Full Catalog <i data-lucide="external-link" style="width: 16px;"></i>
+                </button>
+            </div>
+        </div>
+        <div class="products-grid-preview" id="featured-products-container">
+            <!-- Dynamically populated via JS -->
+        </div>
+    </section>
+
+    <!-- 3. Services Summary Section -->
+    <section id="services" class="section bg-dim">
+        <div class="section-header">
+            <h2>Our Specialized Expertise</h2>
+            <p>Tailored technical solutions for schools, hospitals, corporations, and luxury estates.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card glass">
+                <div class="service-icon"><i data-lucide="shield"></i></div>
+                <h3>Advanced CCTV Setup</h3>
+                <p>High-definition surveillance with AI motion detection and remote mobile access from anywhere.</p>
+            </div>
+            <div class="service-card glass">
+                <div class="service-icon"><i data-lucide="wifi"></i></div>
+                <h3>Industrial Networking</h3>
+                <p>Seamless WiFi mesh systems and secure corporate LAN/WAN infrastructure for zero dead zones.</p>
+            </div>
+            <div class="service-card glass">
+                <div class="service-icon"><i data-lucide="monitor"></i></div>
+                <h3>Microsoft Enterprise</h3>
+                <p>Professional Windows deployment, license management, and secure cloud storage solutions.</p>
+            </div>
+            <div class="service-card glass">
+                <div class="service-icon"><i data-lucide="settings"></i></div>
+                <h3>Systems Restoration</h3>
+                <p>Expert OS installation, recovery, and performance tuning to keep your business running fast.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Doorstep Service Section -->
+    <section class="doorstep-modern">
+        <div class="section-container">
+            <div class="doorstep-grid">
+                <div class="doorstep-info">
+                    <span class="eyebrow">Expert Support</span>
+                    <h2>Doorstep Repair <br>& Expert Service</h2>
+                    <p class="description">
+                        Professional on-site technical support for your home and business. We bring the elite expertise to your door with all the tools needed.
+                    </p>
+                    
+                    <div class="service-points">
+                        <div class="point-item">
+                            <div class="point-icon"><i data-lucide="shield-check"></i></div>
+                            <div class="point-text">
+                                <h3>Certified Technicians</h3>
+                                <p>Senior experts for your valuable hardware.</p>
+                            </div>
+                        </div>
+                        <div class="point-item">
+                            <div class="point-icon"><i data-lucide="map-pin"></i></div>
+                            <div class="point-text">
+                                <h3>30km Service Radius</h3>
+                                <p>Venkatagiri & all surrounding areas.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#contact" class="btn btn-primary btn-glow">
+                        Request Expert Visit <i data-lucide="arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="doorstep-media">
+                    <div class="media-container">
+                        <img src="./media/technician.png" alt="Technician">
+                        <div class="floating-badge status">
+                            <span class="dot"></span> Online Now
+                        </div>
+                        <div class="floating-badge location">
+                            <i data-lucide="navigation"></i> Venkatagiri & Nearby
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Recent Projects (The Proof) -->
+    <section id="projects" class="section gallery-overflow-hidden">
+        <div class="section-header">
+            <h2>Recent Projects</h2>
+            <p>Real-world security and IT solutions delivered to our trusted clients.</p>
+        </div>
+        <div class="carousel-wrapper" id="projects-carousel">
+            <button class="carousel-btn prev-btn"><i data-lucide="chevron-left"></i></button>
+            <div class="gallery-scroll-container carousel-viewport">
+                <div class="gallery-track carousel-track">
+                <div class="gallery-item glass">
+                    <img src="https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&q=80&w=800" alt="CCTV Wall">
+                    <div class="gallery-label">Residential CCTV - Nellore</div>
+                    <div class="gallery-hud">
+                        <span><i class="fa-solid fa-microchip"></i> 4K AI Ops</span>
+                        <span><i class="fa-solid fa-shield"></i> Secure Home</span>
+                    </div>
+                </div>
+                <div class="gallery-item glass">
+                    <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&q=80&w=800" alt="Networking">
+                    <div class="gallery-label">Institutional Security</div>
+                    <div class="gallery-hud">
+                        <span><i class="fa-solid fa-server"></i> 32 CAM NVR</span>
+                        <span><i class="fa-solid fa-wifi"></i> Fiber Backbone</span>
+                    </div>
+                </div>
+                <div class="gallery-item glass">
+                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=800" alt="Server Infrastructure">
+                    <div class="gallery-label">Enterprise Data Center</div>
+                    <div class="gallery-hud">
+                        <span><i class="fa-solid fa-database"></i> 1PB Storage</span>
+                        <span><i class="fa-solid fa-bolt"></i> Dual UPS</span>
+                    </div>
+                </div>
+                <div class="gallery-item glass">
+                    <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&q=80&w=800" alt="Networking">
+                    <div class="gallery-label">Industrial Networking</div>
+                    <div class="gallery-hud">
+                        <span><i class="fa-solid fa-network-wired"></i> Layer 3 Ops</span>
+                        <span><i class="fa-solid fa-link"></i> VPN Mesh</span>
+                    </div>
+                </div>
+                <div class="gallery-item glass">
+                    <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=800" alt="Hospital CCTV">
+                    <div class="gallery-label">Medical Surveillance</div>
+                    <div class="gallery-hud">
+                        <span><i class="fa-solid fa-stethoscope"></i> 24/7 Monitoring</span>
+                        <span><i class="fa-solid fa-hard-drive"></i> Backup RAID</span>
+                    </div>
+                </div>
+                <div class="gallery-item glass">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800" alt="Office Automation">
+                    <div class="gallery-label">Corporate Automation</div>
+                    <div class="gallery-hud">
+                        <span><i class="fa-solid fa-lightbulb"></i> Smart Controls</span>
+                        <span><i class="fa-solid fa-key"></i> Biometric Access</span>
+                    </div>
+                </div>
+                <!-- Duplicate for loop -->
+                <div class="gallery-item glass">
+                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=800" alt="Server Infrastructure">
+                    <div class="gallery-label">Enterprise Data Center</div>
+                    <div class="gallery-hud">
+                        <span><i class="fa-solid fa-database"></i> 1PB Storage</span>
+                        <span><i class="fa-solid fa-bolt"></i> Dual UPS</span>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-btn next-btn"><i data-lucide="chevron-right"></i></button>
+        </div>
+    </section>
+
+    <!-- 5. Why Choose Us (Professional Choice) -->
+    <section class="section bg-dim reveal">
+        <div class="section-header">
+            <h2>Professional Choice for Excellence</h2>
+            <p>Over a decade of technical mastery and unwavering community trust.</p>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-number">10+</span>
+                <span class="stat-label">Years Experience</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">500+</span>
+                <span class="stat-label">Sites Secured</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">Genuine Parts</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">24/7</span>
+                <span class="stat-label">Expert Support</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands Marquee Section (Strategic Order) -->
+    <section class="brands-scroll-container reveal">
+        <div class="section-header" style="margin-bottom: 2rem;">
+            <h2>Our Sales & Service Brands</h2>
+            <p>Authorized partners of world-leading technology manufacturers.</p>
+        </div>
+        <div class="brands-track">
+            <!-- Repeat brands to ensure seamless loop -->
+            <div class="brand-item">
+                <div class="brand-card"><img src="https://tse2.mm.bing.net/th/id/OIP.NjM1pDKg0xRkM9qo0tTxbgHaEK?pid=Api&P=0&h=180" alt="Hikvision"></div>
+                <span class="brand-name">HIKVISION</span>
+            </div>
+            <div class="brand-item">
+                <div class="brand-card"><img src="https://cpplusworld.com/assets/img/logo.png" alt="CP Plus"></div>
+                <span class="brand-name">CP PLUS</span>
+            </div>
+            <div class="brand-item">
+                <div class="brand-card"><img src="https://adsvision.ai/_next/image?url=%2FLogo%2Ficon-transparent-gold-white.svg&w=64&q=75" alt="ADS Vision"></div>
+                <span class="brand-name">ADS VISION</span>
+            </div>
+            <div class="brand-item">
+                <div class="brand-card"><img src="https://www.logo.wine/a/logo/Honeywell/Honeywell-Logo.wine.svg" alt="Honeywell"></div>
+                <span class="brand-name">HONEYWELL</span>
+            </div>
+            <div class="brand-item">
+                <div class="brand-card"><img src="https://trueview.co.in/wp-content/uploads/2023/06/Untitled-design-19.png" alt="Trueview"></div>
+                <span class="brand-name">TRUEVIEW</span>
+            </div>
+            <div class="brand-item">
+                <div class="brand-card"><span style="font-weight: 800; color: #064e3b; font-size: 1.2rem;">HI-TECH</span></div>
+                <span class="brand-name">HI-TECH</span>
+            </div>
+            <div class="brand-item">
+                <div class="brand-card"><span style="font-weight: 800; color: #064e3b; font-size: 1.2rem;">PRAMA INDIA</span></div>
+                <span class="brand-name">PRAMA</span>
+            </div>
+            <div class="brand-item">
+                <div class="brand-card"><img src="https://www.dahuasecurity.com/_nuxt/img/LOGO_header.57e0e23.png" alt="Dahua"></div>
+                <span class="brand-name">DAHUA</span>
+            </div>
+            <!-- Duplicates for loop -->
+            <div class="brand-item">
+                <div class="brand-card"><img src="https://tse2.mm.bing.net/th/id/OIP.NjM1pDKg0xRkM9qo0tTxbgHaEK?pid=Api&P=0&h=180" alt="Hikvision"></div>
+                <span class="brand-name">HIKVISION</span>
+            </div>
+            <div class="brand-item">
+                <div class="brand-card"><img src="https://cpplusworld.com/assets/img/logo.png" alt="CP Plus"></div>
+                <span class="brand-name">CP PLUS</span>
+            </div>
+            <div class="brand-item">
+                <div class="brand-card"><img src="https://adsvision.ai/_next/image?url=%2FLogo%2Ficon-transparent-gold-white.svg&w=64&q=75" alt="ADS Vision"></div>
+                <span class="brand-name">ADS VISION</span>
+            </div>
+            <div class="brand-item">
+                <div class="brand-card"><img src="https://www.logo.wine/a/logo/Honeywell/Honeywell-Logo.wine.svg" alt="Honeywell"></div>
+                <span class="brand-name">HONEYWELL</span>
+            </div>
+        </div>
+        <div class="view-all-container">
+            <button class="btn btn-secondary" id="open-brands-btn">
+                View All Partners <i data-lucide="arrow-right"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- 5.5. Client Reviews (Infinite Scroll) -->
+    <section id="reviews" class="section reviews-section reveal">
+        <div class="section-header">
+            <span class="eyebrow">Testimonials</span>
+            <h2>Client Success Stories</h2>
+            <p>Trusted by industry leaders and home owners across the region.</p>
+        </div>
+        <div class="carousel-wrapper" id="reviews-carousel">
+            <button class="carousel-btn prev-btn"><i data-lucide="chevron-left"></i></button>
+            <div class="reviews-container carousel-viewport">
+                <div class="reviews-track carousel-track">
+                <!-- Review 1 -->
+                <div class="review-card glass">
+                    <div class="review-header">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=100" alt="Client">
+                        <div class="client-meta">
+                            <strong>Sanjay Kumar</strong>
+                            <span>Industrialist</span>
+                        </div>
+                        <div class="stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+                    </div>
+                    <p class="review-text">"KCS transformed our factory security. Their enterprise-grade CCTV and networking solutions are flawless. Highly recommended for industrial projects."</p>
+                </div>
+                <!-- Review 2 -->
+                <div class="review-card glass">
+                    <div class="review-header">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=100" alt="Client">
+                        <div class="client-meta">
+                            <strong>Anitha Reddy</strong>
+                            <span>Home Owner</span>
+                        </div>
+                        <div class="stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+                    </div>
+                    <p class="review-text">"Perfect doorstep service! The technician was very professional and fixed our networking issues in no time. Their response time is amazing."</p>
+                </div>
+                <!-- Review 3 -->
+                <div class="review-card glass">
+                    <div class="review-header">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=100" alt="Client">
+                        <div class="client-meta">
+                            <strong>Venkatesh Rao</strong>
+                            <span>School Principal</span>
+                        </div>
+                        <div class="stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+                    </div>
+                    <p class="review-text">"Managing school surveillance was a headache until KCS took over. Their smart NVR setup is easy to use and very reliable. 5-star service!"</p>
+                </div>
+                <!-- Review 4 -->
+                <div class="review-card glass">
+                    <div class="review-header">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=100" alt="Client">
+                        <div class="client-meta">
+                            <strong>Rajesh Khanna</strong>
+                            <span>IT Manager</span>
+                        </div>
+                        <div class="stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+                    </div>
+                    <p class="review-text">"The server room setup they did for our office is state-of-the-art. Clean cabling, perfect labels, and robust networking. True professionals."</p>
+                </div>
+                <!-- Duplicate for seamless scroll -->
+                <div class="review-card glass">
+                    <div class="review-header">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=100" alt="Client">
+                        <div class="client-meta">
+                            <strong>Sanjay Kumar</strong>
+                            <span>Industrialist</span>
+                        </div>
+                        <div class="stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+                    </div>
+                    <p class="review-text">"KCS transformed our factory security. Their enterprise-grade CCTV and networking solutions are flawless. Highly recommended for industrial projects."</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-btn next-btn"><i data-lucide="chevron-right"></i></button>
+    </div>
+    </section>
+
+    <!-- 6. FAQ Section -->
+    <section class="section">
+        <div class="section-header">
+            <h2>Frequently Asked Questions</h2>
+            <p>Expert answers to your security and infrastructure queries.</p>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item glass">
+                <div class="faq-question">
+                    <span>How long does a standard CCTV installation take?</span>
+                    <i data-lucide="plus"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>A standard 4-camera home installation typically takes 4-6 hours, including wiring and app
+                        configuration.</p>
+                </div>
+            </div>
+            <div class="faq-item glass">
+                <div class="faq-question">
+                    <span>Do your cameras work during power outages?</span>
+                    <i data-lucide="plus"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, when integrated with our UPS solutions, systems remain 100% operational during cuts.</p>
+                </div>
+            </div>
+            <div class="faq-item glass">
+                <div class="faq-question">
+                    <span>Do you provide after-sales service and maintenance?</span>
+                    <i data-lucide="plus"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Absolutely! We offer complete doorstep repair, system maintenance, and a dedicated 1-year service warranty on all our installations.</p>
+                </div>
+            </div>
+            <div class="faq-item glass">
+                <div class="faq-question">
+                    <span>Can I view the live camera footage on my mobile phone?</span>
+                    <i data-lucide="plus"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, all our CCTV and Smart Camera systems come with an official mobile app that lets you monitor your premises live from anywhere in the world.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- Brands All Modal -->
+    <div class="brands-modal" id="brands-modal">
+        <div class="brands-modal-header">
+            <h2>Our Global Partners</h2>
+            <button class="btn btn-secondary close-btn" id="close-brands-btn"><i data-lucide="x"></i> Close</button>
+        </div>
+        <div class="brands-grid-all">
+            <!-- 1. Hikvision -->
+            <div class="brand-item">
+                <div class="brand-card"><img src="https://tse2.mm.bing.net/th/id/OIP.NjM1pDKg0xRkM9qo0tTxbgHaEK?pid=Api&P=0&h=180" alt="Hikvision"></div>
+                <span class="brand-name">HIKVISION</span>
+            </div>
+            <!-- 2. CP Plus -->
+            <div class="brand-item">
+                <div class="brand-card"><img src="https://cpplusworld.com/assets/img/logo.png" alt="CP Plus"></div>
+                <span class="brand-name">CP PLUS</span>
+            </div>
+            <!-- 3. ADS Vision -->
+            <div class="brand-item">
+                <div class="brand-card"><img src="https://adsvision.ai/_next/image?url=%2FLogo%2Ficon-transparent-gold-white.svg&w=64&q=75" alt="ADS Vision"></div>
+                <span class="brand-name">ADS VISION</span>
+            </div>
+            <!-- 4. Honeywell -->
+            <div class="brand-item">
+                <div class="brand-card"><img src="https://www.logo.wine/a/logo/Honeywell/Honeywell-Logo.wine.svg" alt="Honeywell"></div>
+                <span class="brand-name">HONEYWELL</span>
+            </div>
+            <!-- 5. Trueview -->
+            <div class="brand-item">
+                <div class="brand-card"><img src="https://trueview.co.in/wp-content/uploads/2023/06/Untitled-design-19.png" alt="Trueview"></div>
+                <span class="brand-name">TRUEVIEW</span>
+            </div>
+            <!-- 6. Hi-Tech -->
+            <div class="brand-item">
+                <div class="brand-card"><span style="font-weight: 800; color: #064e3b; font-size: 1.2rem;">HI-TECH</span></div>
+                <span class="brand-name">HI-TECH</span>
+            </div>
+            <!-- 7. Prama -->
+            <div class="brand-item">
+                <div class="brand-card"><span style="font-weight: 800; color: #064e3b; font-size: 1.2rem;">PRAMA INDIA</span></div>
+                <span class="brand-name">PRAMA</span>
+            </div>
+            <!-- 8. Dahua -->
+            <div class="brand-item">
+                <div class="brand-card"><img src="https://www.dahuasecurity.com/_nuxt/img/LOGO_header.57e0e23.png" alt="Dahua"></div>
+                <span class="brand-name">DAHUA</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7. Contact Section (Action) -->
+    <section id="contact" class="contact-elite">
+        <div class="section-container">
+            <div class="contact-grid">
+                <div class="contact-details">
+                    <span class="eyebrow">Connect With Us</span>
+                    <h2>Get In Touch</h2>
+                    <p class="description">Ready to secure your world? Our elite team is standing by to help you design the perfect infrastructure.</p>
+                    
+                    <div class="contact-links">
+                        <div class="contact-item">
+                            <div class="item-icon"><i data-lucide="phone"></i></div>
+                            <div class="item-text">
+                                <span>Call Us</span>
+                                <strong>+91 93911 54616</strong>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="item-icon"><i data-lucide="mail"></i></div>
+                            <div class="item-text">
+                                <span>Email Us</span>
+                                <strong>support@kcsinfra.com</strong>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="item-icon"><i data-lucide="map-pin"></i></div>
+                            <div class="item-text">
+                                <span>Office</span>
+                                <strong>Venkatagiri, Nellore Dist.</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-card-wrapper">
+                    <form class="contact-form-glass">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" id="contact-name" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" id="contact-email" placeholder="email@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Mobile Number</label>
+                                <input type="tel" id="contact-phone" placeholder="+91 00000 00000" required>
+                            </div>
+                            <div class="form-group full">
+                                <label>Requirement Details</label>
+                                <select id="requirement-select" required>
+                                    <option value="" disabled selected>Select your requirement...</option>
+                                    <option value="New CCTV Installation">New CCTV Installation for Home</option>
+                                    <option value="Commercial CCTV Setup">Commercial/Office CCTV Setup</option>
+                                    <option value="CCTV Repair/Maintenance">CCTV Repair and Maintenance</option>
+                                    <option value="Networking/WiFi">Networking & Wi-Fi Setup</option>
+                                    <option value="Biometric System">Biometric/Access Control System</option>
+                                    <option value="Intercom System">Intercom/EPABX Installation</option>
+                                    <option value="Other">Other (Please specify)</option>
+                                </select>
+                                <textarea id="custom-requirement" class="hidden" placeholder="Please specify your custom requirements..." rows="4" style="margin-top: 1rem;"></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-glow full">
+                            Send Message <i data-lucide="send"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Full Screen SPA Catalog Overlay -->
+    <div class="catalog-overlay hidden" id="catalog-overlay">
+        <button class="close-catalog" id="close-catalog-btn"><i data-lucide="x"></i></button>
+        <div class="catalog-banner">
+            <h2>Premium Product Catalog</h2>
+        </div>
+        <div class="catalog-nav" id="catalog-filters">
+            <div class="category-circle active" data-category="all">
+                <div class="circle-icon"><i data-lucide="layers"></i></div><span>All</span>
+            </div>
+            <div class="category-circle" data-category="CCTV Cameras">
+                <div class="circle-icon"><i data-lucide="camera"></i></div><span>Cameras</span>
+            </div>
+            <div class="category-circle" data-category="Recording Devices">
+                <div class="circle-icon"><i data-lucide="hard-drive"></i></div><span>Recorders</span>
+            </div>
+            <div class="category-circle" data-category="Wireless & Smart Cameras">
+                <div class="circle-icon"><i data-lucide="zap"></i></div><span>Smart Tech</span>
+            </div>
+            <div class="category-circle" data-category="Storage Devices">
+                <div class="circle-icon"><i data-lucide="database"></i></div><span>Storage</span>
+            </div>
+            <div class="category-circle" data-category="Cables & Accessories">
+                <div class="circle-icon"><i data-lucide="cable"></i></div><span>Cables</span>
+            </div>
+            <div class="category-circle" data-category="Power Solutions">
+                <div class="circle-icon"><i data-lucide="battery-charging"></i></div><span>Power</span>
+            </div>
+            <div class="category-circle" data-category="IT Services">
+                <div class="circle-icon"><i data-lucide="monitor"></i></div><span>IT Services</span>
+            </div>
+        </div>
+        <div class="catalog-grid-container">
+            <div class="catalog-grid" id="full-catalog-container"></div>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div class="product-modal hidden" id="product-modal">
+        <div class="modal-backdrop" id="modal-backdrop"></div>
+        <div class="modal-content glass">
+            <button class="close-modal" id="close-modal-btn"><i data-lucide="x"></i></button>
+            <div class="modal-body">
+                <div class="modal-image-container">
+                    <div class="main-image-wrapper" id="main-image-wrapper">
+                        <img src="" alt="" id="modal-product-image">
+                        <div class="view-indicator"><i data-lucide="maximize-2"></i> Full View</div>
+                    </div>
+                    <div class="view-switcher" id="modal-view-switcher">
+                        <!-- Dynamic Views -->
+                    </div>
+                </div>
+                <div class="modal-info">
+                    <span class="product-brand" id="modal-product-brand"></span>
+                    <h2 id="modal-product-name"></h2>
+                    <p class="product-type" id="modal-product-type"></p>
+                    <p class="product-description" id="modal-product-desc">
+                        Professional grade technology designed for reliability and performance. This product meets elite
+                        industry standards for security and infrastructure.
+                    </p>
+                    <div class="modal-footer">
+                        <span class="product-price" id="modal-product-price"></span>
+                        <div class="modal-actions">
+                            <button class="btn btn-primary" id="modal-enquire-btn">Enquire Now</button>
+                            <button class="btn btn-whatsapp" id="modal-share-btn">
+                                <i data-lucide="message-circle"></i> Book on WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 8. Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid-4">
+                <!-- Col 1: Brand -->
+                <div class="footer-col">
+                    <div class="logo">
+                        <div class="logo-wrapper">
+                            <span class="logo-kcs">KCS</span>
+                            <span class="logo-guard">GUARD</span>
+                        </div>
+                        <span class="logo-sub">CCTV & SECURITY SOLUTIONS</span>
+                    </div>
+                    <p class="footer-about">
+                        Elite infrastructure solutions for a secure world. Industrial-grade surveillance and networking.
+                    </p>
+                </div>
+
+                <!-- Col 2: Services -->
+                <div class="footer-col">
+                    <h4>Our Expertise</h4>
+                    <ul class="footer-links">
+                        <li><a href="#services"><i class="fa-solid fa-chevron-right" style="font-size: 10px; margin-right: 8px;"></i> CCTV Surveillance</a></li>
+                        <li><a href="#services"><i class="fa-solid fa-chevron-right" style="font-size: 10px; margin-right: 8px;"></i> Industrial Networking</a></li>
+                        <li><a href="#services"><i class="fa-solid fa-chevron-right" style="font-size: 10px; margin-right: 8px;"></i> Doorstep Repair</a></li>
+                        <li><a href="#services"><i class="fa-solid fa-chevron-right" style="font-size: 10px; margin-right: 8px;"></i> IT Infrastructure</a></li>
+                        <li><a href="#services"><i class="fa-solid fa-chevron-right" style="font-size: 10px; margin-right: 8px;"></i> System Restoration</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Social & Legal -->
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <div class="social-links" style="margin-top: 0; margin-bottom: 2rem; display: flex; gap: 1rem;">
+                        <a href="#" style="font-size: 20px;"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://youtube.com" style="font-size: 20px;"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="https://wa.me/919391154616" style="font-size: 20px;"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="#" style="font-size: 20px;"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fa-solid fa-shield-halved" style="font-size: 10px; margin-right: 8px;"></i> Privacy Policy</a></li>
+                        <li><a href="#"><i class="fa-solid fa-file-contract" style="font-size: 10px; margin-right: 8px;"></i> Terms of Service</a></li>
+                        <li><a href="admin.html"><i class="fa-solid fa-lock" style="font-size: 10px; margin-right: 8px; color: var(--accent-cyan);"></i> Admin Portal</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Contact -->
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <div class="footer-contact-info">
+                        <div class="contact-item-footer">
+                            <i class="fa-solid fa-phone" style="color: var(--accent-cyan);"></i>
+                            <span>+91 93911 54616</span>
+                        </div>
+                        <div class="contact-item-footer">
+                            <i class="fa-solid fa-envelope" style="color: var(--accent-cyan);"></i>
+                            <span>support@kcsinfra.com</span>
+                        </div>
+                        <div class="contact-item-footer">
+                            <i class="fa-solid fa-location-dot" style="color: var(--accent-cyan);"></i>
+                            <span>Venkatagiri, Nellore Dist, AP</span>
+                        </div>
+                        <div class="contact-item-footer">
+                            <i class="fa-solid fa-clock" style="color: var(--accent-cyan);"></i>
+                            <span>9:00 AM - 8:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 KCS GUARD CCTV & SECURITY SOLUTIONS. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js" type="module"></script>
+    <script>
+        // Force Lucide initialization
+        function initIcons() {
+            if (window.lucide) {
+                window.lucide.createIcons();
+            }
+        }
+        window.addEventListener('load', initIcons);
+        setTimeout(initIcons, 1000); // Backup init
+
+        // Register Service Worker for PWA (Installable App)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful:', registration.scope);
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed:', err);
+                    });
+            });
+        }
+    </script>
+</body>
+
+</html>
