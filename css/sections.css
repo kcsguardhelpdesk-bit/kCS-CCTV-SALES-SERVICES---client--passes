@@ -202,17 +202,27 @@
 
 /* ─── Tablet (769–1024px) ─── */
 @media (max-width: 1024px) {
-  .hero-inner { padding: 0 7%; }
-  .hero-content { max-width: 500px; }
+  .hero-inner {
+    padding: 0 7%;
+    justify-content: center;
+  }
+  .hero-content {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .hero-content::before {
+    display: none;
+  }
+  .welcome-badge {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cta-group {
+    justify-content: center;
+  }
   .hero-image-panel::before {
-    background: linear-gradient(
-      to right,
-      rgba(10, 18, 38, 1) 0%,
-      rgba(10, 18, 38, 0.95) 38%,
-      rgba(10, 18, 38, 0.65) 58%,
-      rgba(10, 18, 38, 0.15) 78%,
-      transparent 100%
-    );
+    background: rgba(10, 18, 38, 0.85); /* Solid dark overlay for perfect text contrast */
   }
 }
 
@@ -289,14 +299,19 @@
   }
 
   .hero-content {
-    max-width: 80%; /* Width constrained to 80% for elegant text wrapping on mobile */
+    max-width: 100%; /* Fully centered layout width */
     padding: 0;
     background: transparent;
-    text-align: left;
+    text-align: center;
     width: 100%;
+    margin: 0 auto;
   }
   
-
+  .welcome-badge {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
   .hero-content::before { display: none; }
 
   /* White text */
@@ -318,12 +333,14 @@
     max-width: 100%;
     color: rgba(255, 255, 255, 0.85); /* Slightly brighter */
     display: block;
+    text-align: center;
   }
 
   .cta-group {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 0.6rem;
+    justify-content: center;
   }
 
   .cta-group .btn {
