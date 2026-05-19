@@ -202,9 +202,16 @@
 
 /* ─── Tablet (769–1024px) ─── */
 @media (max-width: 1024px) {
+  .hero {
+    height: 70vh !important;
+    height: 70dvh !important;
+    min-height: 480px !important;
+  }
   .hero-inner {
     padding: 0 7%;
     justify-content: center;
+    min-height: 70vh !important;
+    min-height: 70dvh !important;
   }
   .hero-content {
     max-width: 600px;
@@ -232,9 +239,9 @@
   .hero {
     position: relative !important;
     display: block !important;
-    height: 85vh !important; /* Slightly less than full screen to show content below */
-    height: 85dvh !important; 
-    min-height: 550px;
+    height: 65vh !important; /* Reduced height on mobile to make the top image more compact */
+    height: 65dvh !important; 
+    min-height: 420px;
     max-height: none !important;
     overflow: hidden;
     background: #0f172a;
