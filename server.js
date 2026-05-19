@@ -32,6 +32,9 @@ app.use('/media', express.static(path.join(__dirname, 'media')));
 app.get('/manifest.json', (req, res) => res.sendFile(path.join(__dirname, 'manifest.json')));
 app.get('/sw.js', (req, res) => res.sendFile(path.join(__dirname, 'sw.js')));
 
+// Serve Google Search Console Verification File
+app.get('/google093d409f13d38307.html', (req, res) => res.sendFile(path.join(__dirname, 'google093d409f13d38307.html')));
+
 // Mongoose Schema & Model for Products
 const ProductSchema = new mongoose.Schema({
     id: { type: Number, required: true, unique: true },
