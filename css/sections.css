@@ -1781,8 +1781,21 @@
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     align-items: center;
     gap: 1.5rem;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.05);
   }
   .nav-links.active { display: flex; }
+
+  .nav-links a {
+    color: #1e293b !important; /* Elegant black/obsidian text for white background */
+    text-shadow: none !important; /* Remove desktop shadow */
+    font-weight: 700;
+    transition: var(--transition);
+  }
+
+  .nav-links a:hover {
+    color: var(--primary) !important; /* Premium dark green hover state */
+    text-shadow: none !important;
+  }
   
   .footer-grid-3 { grid-template-columns: 1fr; }
   .footer-grid-4 { grid-template-columns: 1fr; gap: 2rem; }
