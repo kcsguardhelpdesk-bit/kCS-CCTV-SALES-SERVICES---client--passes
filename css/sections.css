@@ -1324,11 +1324,40 @@
   font-size: 1.1rem;
 }
 
-@media (max-width: 768px) {
-  .contact-grid { grid-template-columns: 1fr; gap: 4rem; }
-  .contact-form-glass { padding: 2.5rem; }
-  .form-grid { grid-template-columns: 1fr; }
-  .form-group.full { grid-column: span 1; }
+/* ─── Tablet & Mobile Form Optimizations (≤ 1024px) ─── */
+@media (max-width: 1024px) {
+  .contact-grid { 
+    grid-template-columns: 1fr !important; 
+    gap: 2.5rem !important; 
+  }
+  .contact-form-glass {
+    padding: 1.5rem !important;
+    border-radius: 20px !important;
+  }
+  .form-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+  .form-group.full {
+    grid-column: span 1 !important;
+  }
+  .form-group label {
+    margin-bottom: 0.4rem !important;
+    font-size: 0.85rem !important;
+  }
+  .form-group input, .form-group textarea, .form-group select {
+    padding: 0.85rem 1rem !important;
+    border-radius: 12px !important;
+    font-size: 0.9rem !important;
+  }
+  .form-group textarea {
+    height: 100px !important; /* Constrain textarea height on mobile/tablet */
+  }
+  .btn.full {
+    padding: 1rem !important;
+    font-size: 0.95rem !important;
+  }
 }
 
 /* Elite Product Cards */
