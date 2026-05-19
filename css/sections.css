@@ -1330,14 +1330,30 @@
     grid-template-columns: 1fr !important; 
     gap: 2.5rem !important; 
   }
+  .contact-details h2 {
+    font-size: 1.75rem !important; /* Reduced heading text size on mobile/tab */
+    margin-bottom: 0.75rem !important;
+  }
+  .contact-details .description {
+    font-size: 0.85rem !important; /* Reduced description text size */
+    line-height: 1.55 !important;
+    margin-bottom: 1.5rem !important;
+  }
   .contact-links {
-    margin-top: 2.5rem !important;
+    margin-top: 2rem !important;
     align-items: center !important; /* Center the links container horizontally */
   }
   .contact-item {
     justify-content: center !important; /* Center icon and text relative to each other */
     text-align: left !important;
     width: max-content !important;
+  }
+  .item-text span {
+    font-size: 0.72rem !important; /* Shrunk category tag */
+    margin-bottom: 0.15rem !important;
+  }
+  .item-text strong {
+    font-size: 0.92rem !important; /* Shrunk phone/email to prevent line breaks and overflow */
   }
   .contact-form-glass {
     padding: 1.5rem !important;
