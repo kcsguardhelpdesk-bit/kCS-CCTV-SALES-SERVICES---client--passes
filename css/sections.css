@@ -1330,6 +1330,15 @@
     grid-template-columns: 1fr !important; 
     gap: 2.5rem !important; 
   }
+  .contact-links {
+    margin-top: 2.5rem !important;
+    align-items: center !important; /* Center the links container horizontally */
+  }
+  .contact-item {
+    justify-content: center !important; /* Center icon and text relative to each other */
+    text-align: left !important;
+    width: max-content !important;
+  }
   .contact-form-glass {
     padding: 1.5rem !important;
     border-radius: 20px !important;
