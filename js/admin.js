@@ -315,8 +315,8 @@ function renderInquiriesTable() {
                     <a href="mailto:${inq.email}?subject=KCS%20Guard%20Security%20Solutions%20Response&body=Hi%20${encodeURIComponent(inq.name)}," class="btn" style="background:#3b82f6; color:#fff; padding:0.4rem 0.6rem; border-radius:4px; font-size:0.8rem;" title="Reply via Email">
                         <i class="fa-solid fa-envelope"></i>
                     </a>
-                    <!-- Delete inquiry from database -->
-                    <button class="btn btn-sm btn-danger delete-inq-btn" data-id="${inq._id}" style="padding: 0.4rem 0.6rem;" title="Delete Record">
+                    <!-- Delete inquiry from database (DISABLED BY ADMIN REQUEST) -->
+                    <button class="btn btn-sm btn-danger delete-inq-btn" disabled data-id="${inq._id}" style="padding: 0.4rem 0.6rem; opacity: 0.4; cursor: not-allowed;" title="Delete Record Disabled">
                         <i class="fa-solid fa-trash"></i>
                     </button>
                 </div>
@@ -325,8 +325,8 @@ function renderInquiriesTable() {
         inquiriesTbody.appendChild(tr);
     });
 
-    // Attach Delete Listener
-    document.querySelectorAll('.delete-inq-btn').forEach(btn => {
+    // Attach Delete Listener (Only for active non-disabled buttons)
+    document.querySelectorAll('.delete-inq-btn:not([disabled])').forEach(btn => {
         btn.addEventListener('click', async (e) => {
             const inqId = e.currentTarget.getAttribute('data-id');
             await deleteInquiry(inqId);
