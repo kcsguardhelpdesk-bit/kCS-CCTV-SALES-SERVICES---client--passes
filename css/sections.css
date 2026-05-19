@@ -1333,20 +1333,25 @@
   .contact-details h2 {
     font-size: 1.75rem !important; /* Reduced heading text size on mobile/tab */
     margin-bottom: 0.75rem !important;
+    text-align: center !important;
   }
   .contact-details .description {
     font-size: 0.85rem !important; /* Reduced description text size */
     line-height: 1.55 !important;
     margin-bottom: 1.5rem !important;
+    text-align: center !important;
   }
   .contact-links {
     margin-top: 2rem !important;
-    align-items: center !important; /* Center the links container horizontally */
+    width: max-content !important; /* Fit the block to its contents */
+    margin-left: auto !important; /* Center the entire block horizontally on the page */
+    margin-right: auto !important;
+    align-items: flex-start !important; /* Keep icons perfectly aligned vertically on the left! */
   }
   .contact-item {
-    justify-content: center !important; /* Center icon and text relative to each other */
+    justify-content: flex-start !important; /* Keep items left-aligned relative to their block */
     text-align: left !important;
-    width: max-content !important;
+    width: 100% !important;
   }
   .item-text span {
     font-size: 0.72rem !important; /* Shrunk category tag */

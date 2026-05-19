@@ -1,4 +1,4 @@
-const CACHE_NAME = 'kcs-guard-v25';
+const CACHE_NAME = 'kcs-guard-v26';
 const ASSETS = [
   '/',
   '/css/main.css',
