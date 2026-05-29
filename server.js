@@ -713,18 +713,27 @@ app.get('/api/job-openings', async (req, res) => {
 // POST /api/job-openings - Add a new job opening (Protected)
 app.post('/api/job-openings', requireAdminAuth, async (req, res) => {
     try {
-        const { title, category, location, type, experience, salary, description, skills, requirements, active } = req.body;
+        const { id, title, category, location, type, experience, salary, description, skills, requirements, active } = req.body;
 
         if (!title || !category || !location || !type || !experience || !salary || !description) {
             return res.status(400).json({ success: false, message: 'Please provide all required fields.' });
         }
 
-        // Generate unique slug-like ID from title safely
-        const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
-        const id = `${slug}-${Date.now().toString().slice(-4)}`;
+        // Validate and clean/generate slug-like custom ID
+        let slugId = id ? id.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '') : '';
+        if (!slugId) {
+            const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+            slugId = `${slug}-${Date.now().toString().slice(-4)}`;
+        }
+
+        // Ensure unique Job ID
+        const existingId = await JobOpening.findOne({ id: slugId });
+        if (existingId) {
+            return res.status(400).json({ success: false, message: `A job opening with ID '${slugId}' already exists. Please choose a different unique ID.` });
+        }
 
         const newOpening = new JobOpening({
-            id,
+            id: slugId,
             title,
             category,
             location,
@@ -738,7 +747,7 @@ app.post('/api/job-openings', requireAdminAuth, async (req, res) => {
         });
 
         await newOpening.save();
-        console.log(`[Database] Added new job opening: ${title} (${id})`);
+        console.log(`[Database] Added new job opening: ${title} (${slugId})`);
 
         res.status(201).json({ success: true, message: 'Job opening added successfully!', data: newOpening });
     } catch (error) {
@@ -750,7 +759,7 @@ app.post('/api/job-openings', requireAdminAuth, async (req, res) => {
 // PUT /api/job-openings/:id - Update job opening (Protected)
 app.put('/api/job-openings/:id', requireAdminAuth, async (req, res) => {
     try {
-        const { title, category, location, type, experience, salary, description, skills, requirements, active } = req.body;
+        const { id, title, category, location, type, experience, salary, description, skills, requirements, active } = req.body;
 
         if (!title || !category || !location || !type || !experience || !salary || !description) {
             return res.status(400).json({ success: false, message: 'Please provide all required fields.' });
@@ -759,6 +768,17 @@ app.put('/api/job-openings/:id', requireAdminAuth, async (req, res) => {
         const opening = await JobOpening.findById(req.params.id);
         if (!opening) {
             return res.status(404).json({ success: false, message: 'Job opening not found.' });
+        }
+
+        if (id) {
+            const slugId = id.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+            if (slugId !== opening.id) {
+                const existingId = await JobOpening.findOne({ id: slugId });
+                if (existingId) {
+                    return res.status(400).json({ success: false, message: `A job opening with ID '${slugId}' already exists. Please choose a different unique ID.` });
+                }
+                opening.id = slugId;
+            }
         }
 
         opening.title = title;

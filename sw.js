@@ -1,4 +1,4 @@
-const CACHE_NAME = 'kcs-guard-v46';
+const CACHE_NAME = 'kcs-guard-v47';
 const ASSETS = [
   '/',
   '/careers',

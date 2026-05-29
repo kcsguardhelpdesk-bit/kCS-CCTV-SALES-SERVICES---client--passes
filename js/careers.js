@@ -239,6 +239,9 @@ export async function initCareers() {
                 <div class="job-info-left">
                     <div class="job-card-header">
                         <span class="job-category">${job.category}</span>
+                        <span style="font-size: 0.72rem; font-weight: 700; color: #64748b; font-family: monospace; background: #f1f5f9; padding: 3px 7px; border-radius: 4px; border: 1px solid #e2e8f0; display: inline-flex; align-items: center; gap: 4px;" title="Unique Job Reference ID">
+                            <i data-lucide="tag" style="width: 11px; height: 11px; color:#64748b;"></i> ID: ${job.id}
+                        </span>
                     </div>
                     <h3 class="job-title">${job.title}</h3>
                     <div class="job-meta-list">
@@ -262,9 +265,14 @@ export async function initCareers() {
                         <span>Salary Bracket</span>
                         ${job.salary}
                     </div>
-                    <button class="btn btn-secondary apply-trigger" data-id="${job.id}" style="padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer;">
-                        View Details
-                    </button>
+                    <div class="job-footer-actions">
+                        <button class="job-share-btn" title="Share this job" data-share-id="${job.id}" aria-label="Share job">
+                            <i data-lucide="share-2"></i>
+                        </button>
+                        <button class="btn btn-secondary apply-trigger" data-id="${job.id}" style="padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer;">
+                            View Details
+                        </button>
+                    </div>
                 </div>
             `;
 
@@ -278,6 +286,18 @@ export async function initCareers() {
                 const job = activeJobOpenings.find(j => j.id === jobId);
                 if (job) {
                     openJobModal(job);
+                }
+            });
+        });
+
+        // Attach share icon events to each job card share button
+        document.querySelectorAll('.job-share-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const jobId = btn.getAttribute('data-share-id');
+                const job = activeJobOpenings.find(j => j.id === jobId);
+                if (job) {
+                    openSharePopup(job);
                 }
             });
         });
@@ -321,6 +341,22 @@ export async function initCareers() {
     // Initial render
     renderJobs(activeJobOpenings);
 
+    // Auto-open specific job opening if "?job=id" is provided in the URL query string
+    const urlParams = new URLSearchParams(window.location.search);
+    const jobParam = urlParams.get('job');
+    if (jobParam) {
+        const targetJob = activeJobOpenings.find(j => j.id === jobParam);
+        if (targetJob) {
+            setTimeout(() => {
+                openJobModal(targetJob);
+                const jobCard = document.querySelector(`.job-share-btn[data-share-id="${jobParam}"]`);
+                if (jobCard) {
+                    jobCard.closest('.job-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }, 300);
+        }
+    }
+
     // Modal elements
     const modal = document.getElementById('careers-modal');
     const closeBtn = document.getElementById('close-careers-modal-btn');
@@ -344,6 +380,9 @@ export async function initCareers() {
     if (form) {
         form.addEventListener('submit', handleApplicationSubmit);
     }
+
+    // Initialize Share System
+    initShareSystem();
 }
 
 // Open detailed view modal
@@ -446,5 +485,268 @@ async function handleApplicationSubmit(e) {
     } catch (err) {
         console.error("Error submitting application:", err);
         alert("Connection error. Failed to save application in database. Please check your internet connection.");
+    }
+}
+
+// =====================================================
+//  SHARE SYSTEM
+// =====================================================
+
+let isShareSystemInitialized = false;
+
+// Initialize share popup event bindings
+function initShareSystem() {
+    ensureSharePopupMarkupExists();
+
+    if (isShareSystemInitialized) return;
+
+    const overlay = document.getElementById('share-popup-overlay');
+    const closeBtn = document.getElementById('close-share-popup');
+    const copyBtn = document.getElementById('share-copy-link-btn');
+    const heroShareBtn = document.getElementById('hero-share-careers-btn');
+
+    // Hero "Share This Page" button
+    if (heroShareBtn) {
+        heroShareBtn.addEventListener('click', () => {
+            openSharePopup(null); // null = share the whole careers page
+        });
+    }
+
+    // Close popup on X button
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeSharePopup);
+    }
+
+    // Close popup on overlay backdrop click
+    if (overlay) {
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) closeSharePopup();
+        });
+    }
+
+    // Copy link button
+    if (copyBtn) {
+        copyBtn.addEventListener('click', () => {
+            const linkEl = document.getElementById('share-link-display');
+            const url = linkEl ? linkEl.textContent.trim() : window.location.origin + '/careers';
+            navigator.clipboard.writeText(url).then(() => {
+                updateCopyButtonState(true);
+                showShareToast('✅ Link copied to clipboard!');
+                setTimeout(() => {
+                    updateCopyButtonState(false);
+                }, 2500);
+            }).catch(() => {
+                // Fallback for older / non-secure browsers
+                const ta = document.createElement('textarea');
+                ta.value = url;
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                try {
+                    document.execCommand('copy');
+                    updateCopyButtonState(true);
+                    showShareToast('✅ Link copied to clipboard!');
+                    setTimeout(() => {
+                        updateCopyButtonState(false);
+                    }, 2500);
+                } catch (err) {
+                    console.error("Fallback copy failed:", err);
+                    showShareToast('❌ Failed to copy link.');
+                }
+                document.body.removeChild(ta);
+            });
+        });
+    }
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const overlay = document.getElementById('share-popup-overlay');
+            if (overlay && overlay.classList.contains('active')) closeSharePopup();
+        }
+    });
+
+    isShareSystemInitialized = true;
+}
+
+// Open share popup - pass job object for specific job, or null for whole page
+function openSharePopup(job) {
+    ensureSharePopupMarkupExists();
+
+    const overlay = document.getElementById('share-popup-overlay');
+    const titleEl = document.getElementById('share-popup-title');
+    const subtitleEl = document.getElementById('share-popup-subtitle');
+    const linkDisplay = document.getElementById('share-link-display');
+
+    if (!overlay) return;
+
+    // Build the URL to share
+    const baseURL = window.location.origin + '/careers';
+    let shareURL = baseURL;
+    let shareTitle = '🚀 KCS Guard Careers — Join Our Elite Team!';
+    let shareText = '';
+    let popupTitle = '📢 Share Careers Page';
+    let popupSubtitle = 'Help someone find their dream job at KCS Guard!';
+
+    if (job) {
+        shareURL = `${baseURL}?job=${encodeURIComponent(job.id)}`;
+        shareTitle = `🚀 Job Opening: ${job.title} at KCS Guard`;
+        shareText = `${job.title} | ${job.location} | ${job.salary}\n\nApply now: ${shareURL}`;
+        popupTitle = `📢 Share This Job`;
+        popupSubtitle = `${job.title} — ${job.location}`;
+    } else {
+        shareText = `We're Hiring! Check out job openings at KCS Guard Security Solutions.\n\n👉 ${shareURL}`;
+    }
+
+    // Set popup content
+    if (titleEl) titleEl.textContent = popupTitle;
+    if (subtitleEl) subtitleEl.textContent = popupSubtitle;
+    if (linkDisplay) linkDisplay.textContent = shareURL;
+
+    // Set social share links
+    const encodedURL = encodeURIComponent(shareURL);
+    const encodedText = encodeURIComponent(shareText);
+    const encodedTitle = encodeURIComponent(shareTitle);
+
+    const waBtn = document.getElementById('share-whatsapp-btn');
+    const fbBtn = document.getElementById('share-facebook-btn');
+    const twBtn = document.getElementById('share-twitter-btn');
+    const tgBtn = document.getElementById('share-telegram-btn');
+
+    if (waBtn) waBtn.href = `https://wa.me/?text=${encodedText}`;
+    if (fbBtn) fbBtn.href = `https://www.facebook.com/sharer/sharer.php?u=${encodedURL}&quote=${encodedTitle}`;
+    if (twBtn) twBtn.href = `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedURL}`;
+    if (tgBtn) tgBtn.href = `https://t.me/share/url?url=${encodedURL}&text=${encodedTitle}`;
+
+    // Reset copy button state using robust toggle helper
+    updateCopyButtonState(false);
+
+    // Setup custom popup show helper
+    const showCustomPopup = () => {
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        if (window.lucide) window.lucide.createIcons();
+    };
+
+    showCustomPopup();
+}
+
+// Helper to switch copy button visually without DOM recreate side-effects
+function updateCopyButtonState(isCopied) {
+    const copyBtn = document.getElementById('share-copy-link-btn');
+    const labelEl = document.getElementById('share-copy-label');
+    if (!copyBtn) return;
+    
+    const defaultIcon = copyBtn.querySelector('.share-copy-icon-default');
+    const successIcon = copyBtn.querySelector('.share-copy-icon-success');
+
+    if (isCopied) {
+        copyBtn.classList.add('copied');
+        if (labelEl) labelEl.textContent = 'Copied!';
+        if (defaultIcon) defaultIcon.style.display = 'none';
+        if (successIcon) successIcon.style.display = 'inline-block';
+    } else {
+        copyBtn.classList.remove('copied');
+        if (labelEl) labelEl.textContent = 'Copy';
+        if (defaultIcon) defaultIcon.style.display = 'inline-block';
+        if (successIcon) successIcon.style.display = 'none';
+    }
+}
+
+// Close share popup
+function closeSharePopup() {
+    const overlay = document.getElementById('share-popup-overlay');
+    if (overlay) {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+// Show toast message
+function showShareToast(message) {
+    const toast = document.getElementById('share-toast');
+    const msgEl = document.getElementById('share-toast-msg');
+    if (!toast) return;
+    if (msgEl) msgEl.textContent = message || 'Link copied!';
+    toast.classList.add('visible');
+    setTimeout(() => toast.classList.remove('visible'), 2800);
+}
+
+// Dynamically create and inject share overlay markup if missing due to cached HTML assets
+function ensureSharePopupMarkupExists() {
+    let overlay = document.getElementById('share-popup-overlay');
+    if (!overlay) {
+        console.log("Defensive injection: Creating share popup dynamically to bypass stale PWA cached HTML page...");
+        const container = document.createElement('div');
+        container.innerHTML = `
+            <div class="share-popup-overlay" id="share-popup-overlay" role="dialog" aria-modal="true" aria-label="Share Careers Page">
+                <div class="share-popup" id="share-popup-box">
+                    <div class="share-popup-header">
+                        <div>
+                            <p class="share-popup-title" id="share-popup-title">📢 Share This Job Opening</p>
+                            <p class="share-popup-subtitle" id="share-popup-subtitle">Help someone find their dream job at KCS Guard. Share this opening!</p>
+                        </div>
+                        <button class="share-popup-close" id="close-share-popup" aria-label="Close share dialog">
+                            <i data-lucide="x"></i>
+                        </button>
+                    </div>
+
+                    <!-- Copyable Link -->
+                    <div class="share-link-row">
+                        <span class="share-link-text" id="share-link-display">https://kcsguard.com/careers</span>
+                        <button class="share-copy-btn" id="share-copy-link-btn">
+                            <i data-lucide="copy" class="share-copy-icon-default"></i>
+                            <i data-lucide="check" class="share-copy-icon-success" style="display: none;"></i>
+                            <span id="share-copy-label">Copy</span>
+                        </button>
+                    </div>
+
+                    <!-- Social Share Options -->
+                    <div class="share-options-grid">
+                        <a href="#" class="share-option-btn whatsapp" id="share-whatsapp-btn" target="_blank" rel="noopener noreferrer">
+                            <span class="share-icon"><i class="fa-brands fa-whatsapp"></i></span>
+                            <span class="share-label">
+                                <span>WhatsApp</span>
+                                <span>Share to contacts</span>
+                            </span>
+                        </a>
+                        <a href="#" class="share-option-btn facebook" id="share-facebook-btn" target="_blank" rel="noopener noreferrer">
+                            <span class="share-icon"><i class="fa-brands fa-facebook-f"></i></span>
+                            <span class="share-label">
+                                <span>Facebook</span>
+                                <span>Post on your wall</span>
+                            </span>
+                        </a>
+                        <a href="#" class="share-option-btn twitter" id="share-twitter-btn" target="_blank" rel="noopener noreferrer">
+                            <span class="share-icon"><i class="fa-brands fa-x-twitter"></i></span>
+                            <span class="share-label">
+                                <span>Twitter / X</span>
+                                <span>Post a tweet</span>
+                            </span>
+                        </a>
+                        <a href="#" class="share-option-btn telegram" id="share-telegram-btn" target="_blank" rel="noopener noreferrer">
+                            <span class="share-icon"><i class="fa-brands fa-telegram"></i></span>
+                            <span class="share-label">
+                                <span>Telegram</span>
+                                <span>Send to group</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="share-toast" id="share-toast" role="status" aria-live="polite">
+                <i data-lucide="check-circle"></i>
+                <span id="share-toast-msg">Link copied to clipboard!</span>
+            </div>
+        `;
+        
+        while (container.firstChild) {
+            document.body.appendChild(container.firstChild);
+        }
+        
+        // Bind new listeners
+        isShareSystemInitialized = false;
+        initShareSystem();
     }
 }

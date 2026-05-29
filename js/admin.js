@@ -1123,6 +1123,7 @@ const savePostBtn = document.getElementById('save-post-btn');
 
 // Form Fields
 const formPostId = document.getElementById('form-post-id');
+const formPostSlugId = document.getElementById('form-post-slug-id');
 const formPostTitle = document.getElementById('form-post-title');
 const formPostCategory = document.getElementById('form-post-category');
 const formPostLocation = document.getElementById('form-post-location');
@@ -1171,7 +1172,7 @@ function renderPostsTable() {
     if (localJobOpenings.length === 0) {
         const tr = document.createElement('tr');
         tr.innerHTML = `
-            <td colspan="8" style="text-align: center; padding: 3rem; color: #64748b;">
+            <td colspan="9" style="text-align: center; padding: 3rem; color: #64748b;">
                 <i data-lucide="inbox" style="width: 48px; height: 48px; margin: 0 auto 1rem; color: #cbd5e1; display: block;"></i>
                 No job openings listed yet. Add one to list it on Careers page!
             </td>
@@ -1183,6 +1184,14 @@ function renderPostsTable() {
 
     localJobOpenings.forEach(post => {
         const tr = document.createElement('tr');
+
+        const tdId = document.createElement('td');
+        tdId.style.fontSize = '0.85rem';
+        tdId.style.color = '#64748b';
+        tdId.style.fontWeight = '700';
+        tdId.style.fontFamily = 'monospace';
+        tdId.textContent = post.id;
+        tr.appendChild(tdId);
 
         const tdTitle = document.createElement('td');
         const strongTitle = document.createElement('strong');
@@ -1316,6 +1325,7 @@ function openPostModal(isEdit = false) {
     if (!isEdit) {
         postModalTitle.textContent = 'Add New Job Post';
         formPostId.value = '';
+        formPostSlugId.value = '';
         formPostTitle.value = '';
         formPostCategory.value = '';
         formPostLocation.value = 'Venkatagiri';
@@ -1336,6 +1346,7 @@ function closePostModal() {
 
 function openPostEditModal(post) {
     formPostId.value = post._id;
+    formPostSlugId.value = post.id || '';
     formPostTitle.value = post.title;
     formPostCategory.value = post.category;
     formPostLocation.value = post.location;
@@ -1394,6 +1405,7 @@ if (savePostBtn) {
 
         const id = formPostId.value;
         const payload = {
+            id: formPostSlugId.value.trim(),
             title: formPostTitle.value.trim(),
             category: formPostCategory.value.trim(),
             location: formPostLocation.value,
