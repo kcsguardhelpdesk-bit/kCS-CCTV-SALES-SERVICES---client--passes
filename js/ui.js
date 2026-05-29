@@ -11,8 +11,9 @@ export function renderFeaturedProducts() {
     featuredGrid.innerHTML = '';
     
     const activeData = getProductData();
-    // We'll just grab the first 8 products for featured, or filter by a specific category
-    const featured = activeData.products.slice(0, 8);
+    // 4 products on mobile/tablet, 8 products on desktop
+    const limit = window.innerWidth <= 991 ? 4 : 8;
+    const featured = activeData.products.slice(0, limit);
     
     featured.forEach(product => {
         const card = createProductCard(product, true);

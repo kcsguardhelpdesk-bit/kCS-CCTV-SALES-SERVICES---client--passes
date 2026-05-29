@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KCS Products Admin</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/admin.css?v=46">
     <!-- FontAwesome & Lucide for beautiful professional icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -24,6 +24,15 @@
                         <i data-lucide="message-square" style="width: 18px; height: 18px; margin-right: 0.5rem; display: inline-block; vertical-align: middle;"></i> Inquiries
                     </span>
                     <span id="inquiry-badge" style="background: #10b981; color: #fff; font-size: 0.75rem; font-weight: 700; padding: 2px 7px; border-radius: 999px; display: none;">0</span>
+                </a>
+                <a href="#" id="nav-job-posts">
+                    <i data-lucide="briefcase" style="width: 18px; height: 18px; margin-right: 0.5rem; display: inline-block; vertical-align: middle;"></i> Job Openings
+                </a>
+                <a href="#" id="nav-job-apps" style="display: flex; align-items: center; justify-content: space-between;">
+                    <span style="display: flex; align-items: center;">
+                        <i data-lucide="users" style="width: 18px; height: 18px; margin-right: 0.5rem; display: inline-block; vertical-align: middle;"></i> Job Applications
+                    </span>
+                    <span id="jobs-badge" style="background: #10b981; color: #fff; font-size: 0.75rem; font-weight: 700; padding: 2px 7px; border-radius: 999px; display: none;">0</span>
                 </a>
                 
                 <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 1.5rem 0;">
@@ -101,6 +110,70 @@
                             </thead>
                             <tbody id="inquiries-tbody">
                                 <!-- Inquiries populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- JOB OPENINGS PANEL -->
+            <div id="job-posts-panel" style="display: none;">
+                <div class="header">
+                    <h1>Job Openings Manager</h1>
+                    <div style="display: flex; gap: 0.75rem; align-items: center;">
+                        <span style="color: #64748b; font-weight: 500; font-size: 0.95rem; margin-right: 1rem;" id="posts-subtitle">0 openings listed</span>
+                        <button class="btn btn-primary" id="add-post-btn">+ Add New Job Post</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Category</th>
+                                    <th>Location</th>
+                                    <th>Type</th>
+                                    <th>Salary Bracket</th>
+                                    <th>Skills</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="posts-tbody">
+                                <!-- Dynamic openings loaded via API -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- JOB APPLICATIONS PANEL -->
+            <div id="job-apps-panel" style="display: none;">
+                <div class="header">
+                    <h1>Candidate Applications</h1>
+                    <div style="display: flex; gap: 0.75rem; align-items: center;">
+                        <span style="color: #64748b; font-weight: 500; font-size: 0.95rem; margin-right: 1rem;" id="jobs-subtitle">0 applications received</span>
+                        <button class="btn btn-primary" id="add-job-btn">+ Add New Application</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Name</th>
+                                    <th>Role</th>
+                                    <th>Preferred Location</th>
+                                    <th>Contact Details</th>
+                                    <th>Skills / Experience</th>
+                                    <th>Resume Link</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="jobs-tbody">
+                                <!-- Job applications populated dynamically -->
                             </tbody>
                         </table>
                     </div>
@@ -202,6 +275,175 @@
             <div class="modal-footer" style="padding: 1rem 2rem 1.5rem;">
                 <button class="btn" id="copy-json-btn" style="background: #e2e8f0; color: #1e293b; padding: 0.75rem 1.25rem; border-radius: 6px; border: 1px solid #cbd5e1; font-weight: 600; cursor: pointer;">Copy Current JSON</button>
                 <button class="btn btn-primary" id="import-json-btn" style="background: #10b981;">🚀 Bulk Import to MongoDB</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Job Application Modal -->
+    <div class="modal-overlay" id="job-modal">
+        <div class="modal" style="max-height: 90vh; display: flex; flex-direction: column;">
+            <div class="modal-header">
+                <h2 id="job-modal-title">Add New Application</h2>
+                <button class="close-btn" id="close-job-modal-btn">&times;</button>
+            </div>
+            <div class="modal-body" style="overflow-y: auto; padding: 1.5rem 2rem; flex: 1;">
+                <form id="job-form" style="display: flex; flex-direction: column; gap: 1.25rem;">
+                    <input type="hidden" id="form-job-id">
+                    
+                    <div class="form-group" style="display: flex; flex-direction: column; gap: 0.4rem;">
+                        <label style="font-weight: 600; color: #1e293b; font-size: 0.9rem;">Full Name</label>
+                        <input type="text" class="form-control" id="form-job-name" required placeholder="Applicant's Full Name" style="width: 100%; padding: 0.65rem 0.8rem; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit;">
+                    </div>
+
+                    <div class="form-group" style="display: flex; flex-direction: column; gap: 0.4rem;">
+                        <label style="font-weight: 600; color: #1e293b; font-size: 0.9rem;">Email Address</label>
+                        <input type="email" class="form-control" id="form-job-email" required placeholder="email@example.com" style="width: 100%; padding: 0.65rem 0.8rem; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit;">
+                    </div>
+
+                    <div class="form-group" style="display: flex; flex-direction: column; gap: 0.4rem;">
+                        <label style="font-weight: 600; color: #1e293b; font-size: 0.9rem;">Contact Number</label>
+                        <input type="tel" class="form-control" id="form-job-phone" required placeholder="e.g. +91 98765 43210" style="width: 100%; padding: 0.65rem 0.8rem; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit;">
+                    </div>
+
+                    <div class="form-group" style="display: flex; flex-direction: column; gap: 0.4rem;">
+                        <label style="font-weight: 600; color: #1e293b; font-size: 0.9rem;">Applied Position / Role</label>
+                        <select class="form-control" id="form-job-role" required style="width: 100%; padding: 0.65rem 0.8rem; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit; background: #fff;">
+                            <option value="Senior CCTV Installation Technician">Senior CCTV Installation Technician</option>
+                            <option value="Lead Network Infrastructure Engineer">Lead Network Infrastructure Engineer</option>
+                            <option value="Full-Stack Node/JS Developer">Full-Stack Node/JS Developer</option>
+                            <option value="Biometric & Access Control Specialist">Biometric & Access Control Specialist</option>
+                            <option value="IT Support & Systems Administrator">IT Support & Systems Administrator</option>
+                            <option value="B2B Sales & Development Executive">B2B Sales & Development Executive</option>
+                            <option value="Office Administrator & Customer Support">Office Administrator & Customer Support</option>
+                            <option value="Hardware Chip-Level Repair Technician">Hardware Chip-Level Repair Technician</option>
+                            <option value="Cable Laying & Fiber Deployment Associate">Cable Laying & Fiber Deployment Associate</option>
+                            <option value="Store Inventory & Logistics Coordinator">Store Inventory & Logistics Coordinator</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" style="display: flex; flex-direction: column; gap: 0.4rem;">
+                        <label style="font-weight: 600; color: #1e293b; font-size: 0.9rem;">Relevant Experience</label>
+                        <select class="form-control" id="form-job-experience" required style="width: 100%; padding: 0.65rem 0.8rem; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit; background: #fff;">
+                            <option value="Fresher (No Experience)">Fresher (No Experience)</option>
+                            <option value="Less than 1 Year">Less than 1 Year</option>
+                            <option value="1 - 2 Years">1 - 2 Years</option>
+                            <option value="2 - 3 Years">2 - 3 Years</option>
+                            <option value="3 - 5 Years">3 - 5 Years</option>
+                            <option value="5+ Years">5+ Years</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" style="display: flex; flex-direction: column; gap: 0.4rem;">
+                        <label style="font-weight: 600; color: #1e293b; font-size: 0.9rem;">Preferred Work Location</label>
+                        <select class="form-control" id="form-job-location" required style="width: 100%; padding: 0.65rem 0.8rem; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit; background: #fff;">
+                            <option value="Venkatagiri">Venkatagiri</option>
+                            <option value="Nellore">Nellore</option>
+                            <option value="Gudur">Gudur</option>
+                            <option value="Rapur">Rapur</option>
+                            <option value="Tirupati">Tirupati</option>
+                            <option value="Yerpedu">Yerpedu</option>
+                            <option value="Kalahasti">Kalahasti</option>
+                            <option value="Naidupeta">Naidupeta</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group grid-col-span-2" style="display: flex; flex-direction: column; gap: 0.4rem;">
+                        <label style="font-weight: 600; color: #1e293b; font-size: 0.9rem;">Skills & Key Expertise</label>
+                        <input type="text" class="form-control" id="form-job-skills" required placeholder="e.g. CCTV Wiring, IP Setup, Node.js" style="width: 100%; padding: 0.65rem 0.8rem; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit;">
+                    </div>
+
+                    <div class="form-group grid-col-span-2" style="display: flex; flex-direction: column; gap: 0.4rem;">
+                        <label style="font-weight: 600; color: #1e293b; font-size: 0.9rem;">Google Drive Resume Link</label>
+                        <input type="url" class="form-control" id="form-job-resume" required placeholder="Paste shared Google Drive Resume URL..." style="width: 100%; padding: 0.65rem 0.8rem; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit;">
+                    </div>
+
+                    <div class="form-group grid-col-span-2" style="display: flex; flex-direction: column; gap: 0.4rem;">
+                        <label style="font-weight: 600; color: #1e293b; font-size: 0.9rem;">Additional Cover Details (Optional)</label>
+                        <textarea class="form-control" id="form-job-details" rows="3" placeholder="Enter any extra details or review notes..." style="width: 100%; padding: 0.65rem 0.8rem; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit; resize: vertical;"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer" style="padding: 1rem 2rem 1.5rem; display: flex; justify-content: flex-end; gap: 0.75rem; border-top: 1px solid #cbd5e1;">
+                <button class="btn btn-secondary" id="cancel-job-modal-btn" style="background:#e2e8f0; color:#1e293b; border:none; padding:0.6rem 1.25rem; border-radius:6px; cursor:pointer; font-weight:600;">Cancel</button>
+                <button class="btn btn-primary" id="save-job-btn">Save Application</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Job Opening (Post) Modal -->
+    <div class="modal-overlay" id="post-modal">
+        <div class="modal" style="max-height: 90vh; display: flex; flex-direction: column;">
+            <div class="modal-header">
+                <h2 id="post-modal-title">Add New Job Post</h2>
+                <button class="close-btn" id="close-post-modal-btn">&times;</button>
+            </div>
+            <div class="modal-body" style="overflow-y: auto; padding: 1.5rem 2rem; flex: 1;">
+                <form id="post-form" style="display: flex; flex-direction: column; gap: 1.25rem;">
+                    <input type="hidden" id="form-post-id">
+                    
+                    <div class="form-group grid-col-span-2" style="display: flex; flex-direction: column; gap: 0.4rem;">
+                        <label style="font-weight: 600; color: #1e293b; font-size: 0.9rem;">Job Title</label>
+                        <input type="text" class="form-control" id="form-post-title" required placeholder="e.g. Senior CCTV Installation Technician" style="width: 100%; padding: 0.65rem 0.8rem; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit;">
+                    </div>
+
+                    <div class="form-group" style="display: flex; flex-direction: column; gap: 0.4rem;">
+                        <label style="font-weight: 600; color: #1e293b; font-size: 0.9rem;">Category</label>
+                        <input type="text" class="form-control" id="form-post-category" required placeholder="e.g. Surveillance" style="width: 100%; padding: 0.65rem 0.8rem; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit;">
+                    </div>
+
+                    <div class="form-group" style="display: flex; flex-direction: column; gap: 0.4rem;">
+                        <label style="font-weight: 600; color: #1e293b; font-size: 0.9rem;">Location</label>
+                        <select class="form-control" id="form-post-location" required style="width: 100%; padding: 0.65rem 0.8rem; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit; background: #fff;">
+                            <option value="Venkatagiri">Venkatagiri</option>
+                            <option value="Nellore">Nellore</option>
+                            <option value="Gudur">Gudur</option>
+                            <option value="Rapur">Rapur</option>
+                            <option value="Tirupati">Tirupati</option>
+                            <option value="Yerpedu">Yerpedu</option>
+                            <option value="Kalahasti">Kalahasti</option>
+                            <option value="Naidupeta">Naidupeta</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" style="display: flex; flex-direction: column; gap: 0.4rem;">
+                        <label style="font-weight: 600; color: #1e293b; font-size: 0.9rem;">Job Type</label>
+                        <select class="form-control" id="form-post-type" required style="width: 100%; padding: 0.65rem 0.8rem; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit; background: #fff;">
+                            <option value="Full-Time">Full-Time</option>
+                            <option value="Part-Time">Part-Time</option>
+                            <option value="Contract">Contract</option>
+                            <option value="Contract / Full-Time">Contract / Full-Time</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" style="display: flex; flex-direction: column; gap: 0.4rem;">
+                        <label style="font-weight: 600; color: #1e293b; font-size: 0.9rem;">Required Experience</label>
+                        <input type="text" class="form-control" id="form-post-experience" required placeholder="e.g. 2-4 Years or Fresher" style="width: 100%; padding: 0.65rem 0.8rem; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit;">
+                    </div>
+
+                    <div class="form-group grid-col-span-2" style="display: flex; flex-direction: column; gap: 0.4rem;">
+                        <label style="font-weight: 600; color: #1e293b; font-size: 0.9rem;">Salary Bracket</label>
+                        <input type="text" class="form-control" id="form-post-salary" required placeholder="e.g. ₹18,000 - ₹25,000 / month" style="width: 100%; padding: 0.65rem 0.8rem; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit;">
+                    </div>
+
+                    <div class="form-group grid-col-span-2" style="display: flex; flex-direction: column; gap: 0.4rem;">
+                        <label style="font-weight: 600; color: #1e293b; font-size: 0.9rem;">Job Description</label>
+                        <textarea class="form-control" id="form-post-description" rows="3" required placeholder="Provide a brief summary of the role..." style="width: 100%; padding: 0.65rem 0.8rem; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit; resize: vertical;"></textarea>
+                    </div>
+
+                    <div class="form-group grid-col-span-2" style="display: flex; flex-direction: column; gap: 0.4rem;">
+                        <label style="font-weight: 600; color: #1e293b; font-size: 0.9rem;">Skills & Key Expertise (Comma-separated)</label>
+                        <input type="text" class="form-control" id="form-post-skills" required placeholder="e.g. Hikvision, CP Plus, IP Cameras" style="width: 100%; padding: 0.65rem 0.8rem; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit;">
+                    </div>
+
+                    <div class="form-group grid-col-span-2" style="display: flex; flex-direction: column; gap: 0.4rem;">
+                        <label style="font-weight: 600; color: #1e293b; font-size: 0.9rem;">Key Requirements (One requirement per line)</label>
+                        <textarea class="form-control" id="form-post-requirements" rows="4" required placeholder="Enter requirements (each on a new line)..." style="width: 100%; padding: 0.65rem 0.8rem; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit; resize: vertical;"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer" style="padding: 1rem 2rem 1.5rem; display: flex; justify-content: flex-end; gap: 0.75rem; border-top: 1px solid #cbd5e1;">
+                <button class="btn btn-secondary" id="cancel-post-modal-btn" style="background:#e2e8f0; color:#1e293b; border:none; padding:0.6rem 1.25rem; border-radius:6px; cursor:pointer; font-weight:600;">Cancel</button>
+                <button class="btn btn-primary" id="save-post-btn">Save Job Post</button>
             </div>
         </div>
     </div>

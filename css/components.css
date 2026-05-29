@@ -58,14 +58,16 @@
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 1.5rem 5%;
+  padding: 1.2rem 5%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
   transition: all 0.3s ease;
-  background: transparent;
-  color:white;
+  background: rgba(10, 18, 38, 0.85); /* Semi-transparent dark background for text visibility */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .navbar.scrolled {

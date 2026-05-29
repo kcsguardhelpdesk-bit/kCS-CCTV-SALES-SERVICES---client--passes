@@ -173,14 +173,16 @@ td {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.5);
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s ease;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s;
 }
 
 .modal-overlay.active {
@@ -190,12 +192,20 @@ td {
 
 .modal {
   background: #fff;
-  border-radius: 12px;
+  border-radius: 16px;
   width: 100%;
   max-width: 500px;
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+  transform: translateY(20px) scale(0.96);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-overlay.active .modal {
+  transform: translateY(0) scale(1);
+  opacity: 1;
 }
 
 .modal-header {
@@ -461,10 +471,13 @@ td {
         max-height: calc(90vh - 150px); /* accounts for header + footer height */
         padding: 2.5rem 2rem;
     }
-    #product-form {
-        display: grid;
+    #product-form, #post-form, #job-form {
+        display: grid !important;
         grid-template-columns: 1fr 1fr;
         gap: 1.25rem 1.75rem;
+    }
+    .grid-col-span-2 {
+        grid-column: span 2;
     }
     /* Let the dynamic resolution and description inputs, plus the image URL span full width */
     #product-form .form-group:has(#form-image),
@@ -480,6 +493,13 @@ td {
     #product-form .form-group:nth-last-child(1) {
         grid-column: span 2;
     }
+}
+
+/* Status Indicator Pulse Animation */
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.25); opacity: 0.6; }
+  100% { transform: scale(1); opacity: 1; }
 }
 
 

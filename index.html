@@ -28,9 +28,12 @@
     <meta property="twitter:description" content="Professional-grade surveillance cameras, IT networking, and expert doorstep repair services in Venkatagiri and Nellore.">
     <meta property="twitter:image" content="https://kcs-cctv-services.onrender.com/media/image.png">
 
-    <!-- Google Search Console HTML Verification Tag (Replace content with your code) -->
+    <!-- Google Search Console HTML Verification Tag -->
     <meta name="google-site-verification" content="t9n5Tr5Fw5Z_nRH2EX6J1EFH9JtACCKwZn_TogNrUTA" />
-    <link rel="stylesheet" href="css/main.css">
+    <!-- Direct Stylesheets with Cache Busting to Force PWA Updates -->
+    <link rel="stylesheet" href="css/base.css?v=46">
+    <link rel="stylesheet" href="css/components.css?v=46">
+    <link rel="stylesheet" href="css/sections.css?v=46">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- PWA Manifest & Theme -->
@@ -64,6 +67,7 @@
             <a href="#products">Products</a>
             <a href="#services">Services</a>
             <a href="#projects">Projects</a>
+            <a href="/careers">Careers</a>
             <a href="#contact">Contact</a>
             <button class="btn btn-primary" id="nav-quote-btn">Get Quote</button>
         </div>
@@ -446,7 +450,7 @@
     </section>
 
     <!-- 6. FAQ Section -->
-    <section class="section">
+    <section class="section" style="padding-bottom: 2rem;">
         <div class="section-header">
             <h2>Frequently Asked Questions</h2>
             <p>Expert answers to your security and infrastructure queries.</p>
@@ -543,8 +547,24 @@
         </div>
     </div>
 
+
+
+    <!-- 6.5. Careers Banner Section (Hiring Preview) -->
+    <section id="careers-preview" class="section bg-dim reveal" style="padding-bottom: 4rem; padding-top: 4rem; text-align: center;">
+        <div class="section-container" style="max-width: 1200px; margin: 0 auto;">
+            <span class="eyebrow">We are Hiring</span>
+            <h2 style="font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; color: var(--text-bright); margin-bottom: 1rem;">Join Our Elite Team</h2>
+            <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 2.5rem; line-height: 1.7; font-size: 1.05rem;">
+                Explore career opportunities at KCS Guard. We are actively hiring senior CCTV technicians, networking engineers, developers, and office administrators.
+            </p>
+            <a href="/careers" class="btn btn-primary btn-glow" style="background: linear-gradient(135deg, #059669 0%, #06b6d4 100%) !important; padding: 1rem 2.5rem; font-weight: 700; font-size: 1.05rem; border-radius: 50px; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 15px rgba(6, 182, 212, 0.35);">
+                View All Job Openings <i data-lucide="external-link" style="width: 18px; height: 18px;"></i>
+            </a>
+        </div>
+    </section>
+
     <!-- 7. Contact Section (Action) -->
-    <section id="contact" class="contact-elite">
+    <section id="contact" class="contact-elite" style="padding-top: 2rem;">
         <div class="section-container">
             <div class="contact-grid">
                 <div class="contact-details">
@@ -730,6 +750,7 @@
                         <a href="#" style="font-size: 20px;"><i class="fa-brands fa-instagram"></i></a>
                     </div>
                     <ul class="footer-links">
+                        <li><a href="/careers"><i class="fa-solid fa-briefcase" style="font-size: 10px; margin-right: 8px; color: var(--accent-cyan);"></i> Careers (We're Hiring)</a></li>
                         <li><a href="#"><i class="fa-solid fa-shield-halved" style="font-size: 10px; margin-right: 8px;"></i> Privacy Policy</a></li>
                         <li><a href="#"><i class="fa-solid fa-file-contract" style="font-size: 10px; margin-right: 8px;"></i> Terms of Service</a></li>
                         <li><a href="admin.html"><i class="fa-solid fa-lock" style="font-size: 10px; margin-right: 8px; color: var(--accent-cyan);"></i> Admin Portal</a></li>

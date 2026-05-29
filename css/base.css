@@ -32,12 +32,17 @@
   display: none;
 }
 
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
 body {
   background-color: var(--bg-deep);
   color: var(--text-primary);
   font-family: var(--font-main);
   line-height: 1.6;
-  overflow-x: hidden;
   background-image: 
     linear-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
@@ -58,6 +63,27 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 16px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+}
+
+/* Responsive Global Typography Size Reductions for Mobiles & Tablets */
+@media (max-width: 991px) {
+  h1 {
+    font-size: clamp(1.6rem, 5.5vw, 2.2rem) !important;
+  }
+  h2 {
+    font-size: clamp(1.4rem, 4.5vw, 1.8rem) !important;
+  }
+  h3 {
+    font-size: clamp(1.15rem, 3.5vw, 1.45rem) !important;
+  }
+  p {
+    font-size: 0.88rem !important;
+    line-height: 1.55 !important;
+  }
+  .contact-item-footer a,
+  .contact-item-footer span {
+    font-size: 0.82rem !important;
+  }
 }
 
 .bg-dim { background-color: #f1f5f9; }

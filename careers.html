@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>KCS GUARD Careers | Join Our Elite Team</title>
+    <meta name="description" content="Explore job openings at KCS Guard. We are hiring technicians, engineers, developers, and administrators in Venkatagiri, Nellore, and Andhra Pradesh.">
+    <!-- Direct Stylesheets with Cache Busting to Force PWA Updates -->
+    <link rel="stylesheet" href="css/base.css?v=46">
+    <link rel="stylesheet" href="css/components.css?v=46">
+    <link rel="stylesheet" href="css/sections.css?v=46">
+    <link rel="stylesheet" href="css/careers.css?v=46">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Font Awesome for Social -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="bg-dim">
+
+    <!-- Navbar -->
+    <nav class="navbar scrolled" id="navbar" style="position: sticky; background: rgba(255, 255, 255, 0.9);">
+        <a href="/#home" class="logo">
+            <div class="logo-wrapper">
+                <span class="logo-kcs" style="color: #064e3b;">KCS</span>
+                <span class="logo-guard">GUARD</span>
+            </div>
+            <span class="logo-sub" style="color: #059669;">SECURITY</span>
+        </a>
+
+        <div class="nav-links" id="nav-links">
+            <a href="/#home" style="color: var(--text-primary) !important; text-shadow: none !important;">Home</a>
+            <a href="/#products" style="color: var(--text-primary) !important; text-shadow: none !important;">Products</a>
+            <a href="/#services" style="color: var(--text-primary) !important; text-shadow: none !important;">Services</a>
+            <a href="/#projects" style="color: var(--text-primary) !important; text-shadow: none !important;">Projects</a>
+            <a href="#" class="active" style="color: var(--primary) !important; text-shadow: none !important;">Careers</a>
+            <a href="/#contact" style="color: var(--text-primary) !important; text-shadow: none !important;">Contact</a>
+            <button class="btn btn-primary" id="nav-quote-btn" style="background: linear-gradient(135deg, #059669 0%, #06b6d4 100%) !important;">Get Quote</button>
+        </div>
+
+        <div class="mobile-toggle" id="mobile-toggle" style="color: var(--text-primary);">
+            <i data-lucide="menu"></i>
+        </div>
+    </nav>
+
+    <!-- Careers Hero Header -->
+    <header class="section" style="background: linear-gradient(135deg, #0f172a 0%, #0a0f1d 100%); text-align: center; padding: 6rem 10% 4rem; border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <div class="section-header" style="margin-bottom: 0;">
+            <span class="eyebrow" style="margin-bottom: 1rem;">Careers</span>
+            <h1 style="font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 800; color: #ffffff; margin-bottom: 1.5rem; line-height: 1.2;">Join Our Elite Team</h1>
+            <p style="color: #cbd5e1; max-width: 650px; margin: 0 auto 2rem; font-size: 1.1rem; line-height: 1.7;">
+                Be part of the leading CCTV security and IT infrastructure enterprise in the region. We are looking for talented individuals who thrive on technical mastery and customer excellence.
+            </p>
+            <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.25); color: #10b981; padding: 0.55rem 1.1rem; border-radius: 50px; font-weight: 700; font-size: 0.85rem;">
+                <span class="dot-pulse"></span> We are actively hiring right now
+            </div>
+        </div>
+    </header>
+
+    <!-- Standalone Careers Section -->
+    <section class="section" style="padding: 4rem 10% 8rem;">
+        <!-- Stacked Search & Filter Dashboard -->
+        <div class="search-filter-section">
+            <div class="search-filter-grid">
+                <div class="filter-group">
+                    <label for="search-skills">Search by Skills / Keyword</label>
+                    <div style="position: relative; display: flex; align-items: center;">
+                        <input type="text" id="search-skills" class="filter-control" placeholder="e.g. CCTV, Node.js, Fiber, Hikvision..." style="padding-left: 2.5rem;">
+                        <i data-lucide="search" style="position: absolute; left: 0.85rem; width: 16px; height: 16px; color: #94a3b8; pointer-events: none;"></i>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <label for="filter-category">Category</label>
+                    <select id="filter-category" class="filter-control">
+                        <option value="">All Categories</option>
+                        <!-- Categories dynamically loaded via JS -->
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filter-location">Job Location</label>
+                    <select id="filter-location" class="filter-control">
+                        <option value="">All Locations</option>
+                        <option value="Gudur">Gudur</option>
+                        <option value="Nellore">Nellore</option>
+                        <option value="Rapur">Rapur</option>
+                        <option value="Venkatagiri">Venkatagiri</option>
+                        <option value="Tirupati">Tirupati</option>
+                        <option value="Yerpedu">Yerpedu</option>
+                        <option value="Kalahasti">Kalahasti</option>
+                        <option value="Naidupeta">Naidupeta</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="careers-grid" id="careers-grid-container">
+            <!-- Dynamically populated via JS -->
+        </div>
+    </section>
+
+    <!-- Careers Job Application Modal -->
+    <div class="careers-modal" id="careers-modal">
+        <div class="careers-modal-content">
+            <div class="careers-modal-header">
+                <div>
+                    <span class="job-category" id="job-modal-cat">Category</span>
+                    <h3 class="careers-modal-title" id="job-modal-title">Job Position Title</h3>
+                </div>
+                <button class="careers-modal-close" id="close-careers-modal-btn">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div class="careers-modal-body">
+                <div class="job-modal-details">
+                    <h4 style="margin-bottom: 0.5rem; font-weight: 700;">Job Description</h4>
+                    <p id="job-modal-desc" style="font-size: 0.875rem; color: #334155; line-height: 1.55; margin-bottom: 1.25rem;"></p>
+                    <h4 style="margin-bottom: 0.5rem; font-weight: 700;">Key Requirements</h4>
+                    <ul class="job-modal-requirements" id="job-modal-reqs">
+                        <!-- Requirements populated dynamically -->
+                    </ul>
+                </div>
+                
+                <h3 style="font-size: 1.1rem; font-weight: 700; color: #1e293b; margin-bottom: 1rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.5rem;">Apply for this Position</h3>
+                <form class="careers-form" id="careers-application-form">
+                    <input type="hidden" id="apply-job-role">
+                    <div class="careers-form-group">
+                        <label for="apply-name">Full Name</label>
+                        <input type="text" id="apply-name" class="careers-form-control" placeholder="Your Full Name" required>
+                    </div>
+                    <div class="careers-form-group">
+                        <label for="apply-email">Email Address</label>
+                        <input type="email" id="apply-email" class="careers-form-control" placeholder="email@example.com" required>
+                    </div>
+                    <div class="careers-form-group">
+                        <label for="apply-phone">Contact Number</label>
+                        <input type="tel" id="apply-phone" class="careers-form-control" placeholder="e.g. +91 98765 43210" required>
+                    </div>
+                    <div class="careers-form-group">
+                        <label for="apply-experience">Relevant Experience</label>
+                        <select id="apply-experience" class="careers-form-control" required>
+                            <option value="" disabled selected>Select experience...</option>
+                            <option value="Fresher (No Experience)">Fresher (No Experience)</option>
+                            <option value="Less than 1 Year">Less than 1 Year</option>
+                            <option value="1 - 2 Years">1 - 2 Years</option>
+                            <option value="2 - 3 Years">2 - 3 Years</option>
+                            <option value="3 - 5 Years">3 - 5 Years</option>
+                            <option value="5+ Years">5+ Years</option>
+                        </select>
+                    </div>
+                    <div class="careers-form-group">
+                        <label for="apply-skills">Skills & Key Expertise</label>
+                        <input type="text" id="apply-skills" class="careers-form-control" placeholder="e.g. CCTV Wiring, IP Setup, Node.js" required>
+                    </div>
+                    <div class="careers-form-group">
+                        <label for="apply-location">Preferred Work Location</label>
+                        <select id="apply-location" class="careers-form-control" required>
+                            <option value="" disabled selected>Select preferred area...</option>
+                            <option value="Venkatagiri">Venkatagiri</option>
+                            <option value="Nellore">Nellore</option>
+                            <option value="Gudur">Gudur</option>
+                            <option value="Rapur">Rapur</option>
+                            <option value="Tirupati">Tirupati</option>
+                            <option value="Yerpedu">Yerpedu</option>
+                            <option value="Kalahasti">Kalahasti</option>
+                            <option value="Naidupeta">Naidupeta</option>
+                        </select>
+                    </div>
+                    <div class="careers-form-group full-width">
+                        <label for="apply-resume">Google Drive Resume Link</label>
+                        <input type="url" id="apply-resume" class="careers-form-control" placeholder="Paste your shared Google Drive Resume URL link..." required>
+                        <small style="color: #06b6d4; font-size: 0.75rem; display: flex; align-items: center; gap: 4px; margin-top: 4px;">
+                            <i data-lucide="info" style="width: 12px; height: 12px; flex-shrink: 0;"></i> Important: Ensure link sharing on Google Drive is set to "Anyone with the link can view".
+                        </small>
+                    </div>
+                    <div class="careers-form-group full-width">
+                        <label for="apply-details">Additional Cover Details (Optional)</label>
+                        <textarea id="apply-details" class="careers-form-control" rows="2" placeholder="Tell us more about your background..."></textarea>
+                    </div>
+                    <div class="careers-form-group full-width" style="margin-top: 0.5rem;">
+                        <button type="submit" class="btn btn-primary btn-glow full" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                            Submit Application & Connect on WhatsApp <i data-lucide="send"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid-4">
+                <!-- Col 1: Brand -->
+                <div class="footer-col">
+                    <div class="logo">
+                        <div class="logo-wrapper">
+                            <span class="logo-kcs" style="color: #ffffff;">KCS</span>
+                            <span class="logo-guard">GUARD</span>
+                        </div>
+                        <span class="logo-sub" style="color: #6ee7b7;">CCTV & SECURITY SOLUTIONS</span>
+                    </div>
+                    <p class="footer-about">
+                        Elite infrastructure solutions for a secure world. Industrial-grade surveillance and networking.
+                    </p>
+                </div>
+
+                <!-- Col 2: Services -->
+                <div class="footer-col">
+                    <h4>Our Expertise</h4>
+                    <ul class="footer-links">
+                        <li><a href="/#services"><i class="fa-solid fa-chevron-right" style="font-size: 10px; margin-right: 8px;"></i> CCTV Surveillance</a></li>
+                        <li><a href="/#services"><i class="fa-solid fa-chevron-right" style="font-size: 10px; margin-right: 8px;"></i> Industrial Networking</a></li>
+                        <li><a href="/#services"><i class="fa-solid fa-chevron-right" style="font-size: 10px; margin-right: 8px;"></i> Doorstep Repair</a></li>
+                        <li><a href="/#services"><i class="fa-solid fa-chevron-right" style="font-size: 10px; margin-right: 8px;"></i> IT Infrastructure</a></li>
+                        <li><a href="/#services"><i class="fa-solid fa-chevron-right" style="font-size: 10px; margin-right: 8px;"></i> System Restoration</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Social & Legal -->
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <div class="social-links" style="margin-top: 0; margin-bottom: 2rem; display: flex; gap: 1rem;">
+                        <a href="#" style="font-size: 20px;"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://youtube.com" style="font-size: 20px;"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="https://wa.me/919391154616" style="font-size: 20px;"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="#" style="font-size: 20px;"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                    <ul class="footer-links">
+                        <li><a href="#" class="active"><i class="fa-solid fa-briefcase" style="font-size: 10px; margin-right: 8px; color: var(--accent-cyan);"></i> Careers (We're Hiring)</a></li>
+                        <li><a href="#"><i class="fa-solid fa-shield-halved" style="font-size: 10px; margin-right: 8px;"></i> Privacy Policy</a></li>
+                        <li><a href="#"><i class="fa-solid fa-file-contract" style="font-size: 10px; margin-right: 8px;"></i> Terms of Service</a></li>
+                        <li><a href="admin.html"><i class="fa-solid fa-lock" style="font-size: 10px; margin-right: 8px; color: var(--accent-cyan);"></i> Admin Portal</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Contact -->
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <div class="footer-contact-info">
+                        <div class="contact-item-footer">
+                            <i class="fa-solid fa-phone" style="color: var(--accent-cyan);"></i>
+                            <span>+91 93911 54616</span>
+                        </div>
+                        <div class="contact-item-footer">
+                            <i class="fa-solid fa-envelope" style="color: var(--accent-cyan);"></i>
+                            <a href="mailto:kcsguard.helpdesk@gmail.com" style="color: inherit; text-decoration: none; transition: var(--transition);" onmouseover="this.style.color='var(--accent-cyan)'" onmouseout="this.style.color='inherit'">kcsguard.helpdesk@gmail.com</a>
+                        </div>
+                        <div class="contact-item-footer">
+                            <i class="fa-solid fa-location-dot" style="color: var(--accent-cyan);"></i>
+                            <span>Venkatagiri, Nellore Dist, AP</span>
+                        </div>
+                        <div class="contact-item-footer">
+                            <i class="fa-solid fa-clock" style="color: var(--accent-cyan);"></i>
+                            <span>9:00 AM - 8:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 KCS GUARD CCTV & SECURITY SOLUTIONS. All rights reserved.</p>
+                <p class="footer-developer">Designed & Developed by <strong style="color: var(--accent-cyan); font-weight: 700;">Sri Technologies IT Solutions</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { initCareers } from './js/careers.js';
+        
+        // Navigation toggle logic for careers standalone page
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const navLinks = document.getElementById('nav-links');
+        
+        if (mobileToggle) {
+            mobileToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const icon = mobileToggle.querySelector('i');
+                if (navLinks.classList.contains('active')) {
+                    icon.setAttribute('data-lucide', 'x');
+                } else {
+                    icon.setAttribute('data-lucide', 'menu');
+                }
+                lucide.createIcons();
+            });
+        }
+        
+        // Initialize dynamic job roles and forms
+        document.addEventListener('DOMContentLoaded', () => {
+            initCareers();
+            lucide.createIcons();
+        });
+
+        // Register Service Worker for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful:', registration.scope);
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed:', err);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>

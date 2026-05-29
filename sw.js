@@ -1,10 +1,12 @@
-const CACHE_NAME = 'kcs-guard-v31';
+const CACHE_NAME = 'kcs-guard-v46';
 const ASSETS = [
   '/',
+  '/careers',
   '/css/main.css',
   '/css/base.css',
   '/css/components.css',
   '/css/sections.css',
+  '/css/careers.css',
   '/js/main.js',
   '/js/data.js',
   '/js/ui.js',
@@ -12,6 +14,7 @@ const ASSETS = [
   '/js/navigation.js',
   '/js/contact.js',
   '/js/carousel.js',
+  '/js/careers.js',
   '/manifest.json'
 ];
 

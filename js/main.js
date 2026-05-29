@@ -121,6 +121,15 @@ async function init() {
 
     // Initialize Typewriter Welcome Banner
     initWelcomeTypewriter();
+
+    // Listen to resize events to dynamically switch between 4 products and 8 products on mobile/desktop
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            renderFeaturedProducts();
+        }, 150);
+    });
 }
 
 // Draggable WhatsApp Script (Smooth mouse + touch drag)

@@ -238,11 +238,11 @@
 
   .hero {
     position: relative !important;
-    display: block !important;
-    height: 65vh !important; /* Reduced height on mobile to make the top image more compact */
-    height: 65dvh !important; 
-    min-height: 420px;
-    max-height: none !important;
+    display: flex !important;
+    flex-direction: column;
+    min-height: 100vh !important;
+    min-height: 100dvh !important;
+    height: auto !important;
     overflow: hidden;
     background: #0f172a;
   }
@@ -278,7 +278,7 @@
 
   /* Badge: top-right, below the fixed navbar */
   .hero-img-badge {
-    top: 4.5rem;
+    top: 5rem;
     right: 1rem;
     bottom: auto;
     left: auto;
@@ -288,21 +288,21 @@
     gap: 0.45rem;
   }
 
-  /* Text panel: absolutely pinned to BOTTOM of hero */
+  /* Text panel: relative positioned, top padding clears fixed navbar */
   .hero-inner {
-    position: absolute !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    top: auto !important;
+    position: relative !important;
     z-index: 2;
-    min-height: 0 !important;
-    padding: 2rem 1.5rem 2.5rem; /* Increased padding for premium breathing room */
+    padding: 8.5rem 1.5rem 3.5rem !important; /* Premium breathing room, clears navbar */
     background: transparent;
     border-top: none;
     border-image: none;
-    display: block;
-    align-items: unset;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    width: 100%;
+    min-height: 100vh !important;
+    min-height: 100dvh !important;
   }
 
   .hero-content {
@@ -1817,6 +1817,12 @@
   .carousel-wrapper {
     width: calc(100% + 10%); /* Matches the 5% section padding exactly */
     margin-left: -5%;
+  }
+
+  /* Shrunk email & phone details on mobile/tabs to fit screen perfectly */
+  .contact-item-footer span,
+  .contact-item-footer a {
+    font-size: 0.82rem !important;
   }
 
 
